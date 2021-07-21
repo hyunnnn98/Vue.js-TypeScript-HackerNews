@@ -2,6 +2,7 @@ import ListView from './ListView.vue';
 import bus from '../utils/bus';
 import { CreateElement } from 'vue/types/umd';
 
+// HOC 구조 정의.
 export default function createListView(name: string) {
   return {
     name,

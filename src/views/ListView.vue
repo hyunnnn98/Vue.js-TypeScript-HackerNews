@@ -10,11 +10,9 @@ import bus from '../utils/bus';
 
 export default {
   components: {
-    ListItem
+    ListItem,
   },
-}
+};
 </script>
 
-<style>
-
-</style>
+<style></style>
