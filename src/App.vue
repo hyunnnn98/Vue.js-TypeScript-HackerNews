@@ -8,13 +8,14 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+// ts 자동완성으로 ts 스크립트 파일만 불러오기.
+import Vue from 'vue';
 import ToolBar from './components/ToolBar.vue';
-import ProgressBar from './components/ProgressBar.vue';
 import Spinner from './components/Spinner.vue';
-import bus from './utils/bus.js';
+import bus from './utils/bus';
 
-export default {
+export default Vue.extend({
   components: {
     ToolBar,
     Spinner,
@@ -22,7 +23,7 @@ export default {
   data() {
     return {
       loading: false,
-    }
+    };
   },
   methods: {
     onProgress() {
@@ -30,13 +31,13 @@ export default {
     },
     offProgress() {
       this.loading = false;
-    }
+    },
   },
   created() {
     bus.$on('on:progress', this.onProgress);
     bus.$on('off:progress', this.offProgress);
-  }
-}
+  },
+});
 </script>
 
 <style>
@@ -57,8 +58,9 @@ a.router-link-active {
 }
 
 /* Router Transition */
-.routing-fade-enter-active, .routing-fade-leave-active {
-  transition: opacity .3s ease;
+.routing-fade-enter-active,
+.routing-fade-leave-active {
+  transition: opacity 0.3s ease;
 }
 .routing-fade-enter, .routing-fade-leave-to
 /* .routing-fade-leave-active below version 2.1.8 */ {
