@@ -4,8 +4,8 @@ import {
   fetchJobs,
   fetchUser,
   fetchItem,
-  fetchList
-} from '../api/index.js';
+  fetchList,
+} from '../api/index';
 
 export default {
   FETCH_NEWS({ commit }) {
@@ -27,4 +27,4 @@ export default {
   FETCH_LIST({ commit }, listType) {
     return fetchList(listType).then(res => commit('SET_LIST', res.data));
   },
-}
+};
