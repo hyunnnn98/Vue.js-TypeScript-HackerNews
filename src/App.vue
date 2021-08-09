@@ -34,6 +34,7 @@ export default Vue.extend({
     },
   },
   created() {
+    this.$store.state.news;
     bus.$on('on:progress', this.onProgress);
     bus.$on('off:progress', this.offProgress);
   },
