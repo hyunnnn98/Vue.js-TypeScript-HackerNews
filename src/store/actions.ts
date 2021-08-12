@@ -1,9 +1,12 @@
 import { ActionContext } from 'vuex';
 import { Mutations, MutationTypes } from './mutations';
 import { RootState } from './state';
+import { fetchAsk, fetchNews } from './../api';
 
 enum ActionTypes {
   FETCH_NEWS = 'FETCH_NEAWS',
+  FETCH_ASK = 'FETCH_ASK',
+  FETCH_JOBS = 'FETCH_JOBS',
 }
 
 type MyActionContext = {
@@ -14,19 +17,37 @@ type MyActionContext = {
 } & Omit<ActionContext<RootState, RootState>, 'commit'>;
 
 const actions = {
-  async [ActionTypes.FETCH_NEWS](context: MyActionContext, payload?: any) {
+  // 😊 여기서 payload 는 추가적으로 들어올 인자를 뜻하는 것이다!!
+  async [ActionTypes.FETCH_NEWS]({ commit }: MyActionContext, payload?: any) {
     const { data } = await fetchNews();
-    context.commit(MutationTypes.SET_NEWS, data);
+    commit(MutationTypes.SET_NEWS, data);
 
     return data;
   },
+  async [ActionTypes.FETCH_ASK]({ commit }: MyActionContext, payload?: any) {
+    const { data } = await fetchAsk();
+    commit(MutationTypes.SET_ASK, data);
+
+    return data;
+  },
+  async [ActionTypes.FETCH_JOBS]({ commit }: MyActionContext, payload?: any) {
+    const { data } = await fetchAsk();
+    commit(MutationTypes.SET_JOBS, data);
+
+    return data;
+  },
+  // INCREASE({ state, commit }) {
+  //   commit('SET_COUNT', state.count + 1);
+  // },
+  // DECREASE({ state, commit }) {
+  //   commit('SET_COUNT', state.count - 1);
+  // },
 };
 
 type Actions = typeof actions;
 
 export { ActionTypes, actions, Actions };
 
-import { fetchNews } from './../api';
 // import {
 // import { NewsItem } from './../api/index';
 //  fetchNews,

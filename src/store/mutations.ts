@@ -1,15 +1,23 @@
 import { RootState } from './state';
-import { NewsItem } from './../api/index';
+import { NewsItem, CommonItem } from './../api/index';
 
 // 뮤테이션 타입
 enum MutationTypes {
   SET_NEWS = 'SET_NEWS',
+  SET_ASK = 'SET_ASK',
+  SET_JOBS = 'SET_JOBS',
 }
 
 // 뮤테이션 속성 함수
 const mutations = {
   [MutationTypes.SET_NEWS](state: RootState, news: NewsItem[]) {
     state.news = news;
+  },
+  [MutationTypes.SET_ASK](state: RootState, ask: CommonItem[]) {
+    state.ask = ask;
+  },
+  [MutationTypes.SET_JOBS](state: RootState, jobs: CommonItem[]) {
+    state.jobs = jobs;
   },
 };
 
